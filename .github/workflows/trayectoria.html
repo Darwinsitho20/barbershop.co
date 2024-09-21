@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortes</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            height: 400px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-container:hover {
+            transform: scale(1.1);
+        }
+
+        .carousel {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.3);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        .button-back {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            border-radius: 30px;
+            background-color: rgb(21, 0, 97);
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Estilos para agrandar la imagen en pantalla completa */
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen img {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <!-- Coloca tus imágenes aquí -->
+            <img src="https://img.freepik.com/vector-gratis/diseno-plantilla-certificado-barbero_742173-19642.jpg" alt="Imagen 1">
+            <img src="https://www.shutterstock.com/image-vector/certificate-barbershop-gift-haircut-completion-260nw-1965033922.jpg" alt="Imagen 2">
+            <img src="https://png.pngtree.com/template/20220322/ourlarge/pngtree-modern-blue-elegant-business-company-certificate-image_911494.jpg" alt="Imagen 3">
+        </div>
+
+        <!-- Flechas de navegación -->
+        <button class="arrow arrow-left" id="prev">&#9664;</button>
+        <button class="arrow arrow-right" id="next">&#9654;</button>
+    </div>
+
+    <!-- Botón de volver -->
+    <a href="index.html" class="button-back">Volver</a>
+
+    <div id="fullscreen" class="fullscreen" style="display: none;">
+        <img id="fullscreenImg" src="" alt="Imagen en pantalla completa">
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const fullscreen = document.getElementById('fullscreen');
+        const fullscreenImg = document.getElementById('fullscreenImg');
+        let index = 0;
+        const images = carousel.children;
+        const totalImages = images.length;
+        let autoSlide;
+
+        // Función para mostrar la siguiente imagen
+        function showNextImage() {
+            index = (index + 1) % totalImages;
+            updateCarousel();
+        }
+
+        // Función para mostrar la imagen anterior
+        function showPrevImage() {
+            index = (index - 1 + totalImages) % totalImages;
+            updateCarousel();
+        }
+
+        // Actualiza el carrusel según el índice actual
+        function updateCarousel() {
+            const offset = -index * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Función para iniciar el carrusel automático
+        function startAutoSlide() {
+            autoSlide = setInterval(showNextImage, 15000); // Cada 15 segundos
+        }
+
+        // Pausar el carrusel automático al interactuar con las flechas
+        function stopAutoSlide() {
+            clearInterval(autoSlide);
+        }
+
+        // Flechas de navegación
+        document.getElementById('next').addEventListener('click', () => {
+            stopAutoSlide();
+            showNextImage();
+            startAutoSlide();
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            stopAutoSlide();
+            showPrevImage();
+            startAutoSlide();
+        });
+
+        // Al hacer clic en una imagen, mostrarla en pantalla completa
+        Array.from(images).forEach(img => {
+            img.addEventListener('click', () => {
+                fullscreenImg.src = img.src; // Muestra la imagen seleccionada
+                fullscreen.style.display = 'flex'; // Muestra el contenedor en pantalla completa
+            });
+        });
+
+        // Al hacer clic en la imagen de pantalla completa, volver al modo normal
+        fullscreen.addEventListener('click', () => {
+            fullscreen.style.display = 'none'; // Ocultar el modo de pantalla completa
+        });
+
+        // Iniciar el carrusel automático al cargar la página
+        startAutoSlide();
+    </script>
+</body>
+</html>
