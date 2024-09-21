@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortes</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            height: 400px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-container:hover {
+            transform: scale(1.1);
+        }
+
+        .carousel {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.3);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        .button-back {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            border-radius: 30px;
+            background-color: yellow;
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Estilos para agrandar la imagen en pantalla completa */
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen img {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <!-- Coloca tus imágenes aquí -->
+            <img src="https://www.shutterstock.com/shutterstock/photos/2078367241/display_1500/stock-vector-barbershop-logo-vintage-classic-style-salon-fashion-haircut-pomade-badge-icon-simple-minimalist-2078367241.jpg" alt="Imagen 1">
+            <img src="https://i.pinimg.com/originals/85/4d/dc/854ddceb63bacf30ebffe587b6469a15.jpg" alt="Imagen 2">
+            <img src="https://i.pinimg.com/736x/30/5c/f6/305cf64abe1c54b88ddd56d1e30e853d.jpg" alt="Imagen 3">
+            <img src="https://dulceafro.com/wp-content/uploads/2022/12/fade1.jpg" alt="Imagen 4">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm3TI8-o5393d6z-DHgX2YNi4Ltrezn0JT1A&s" alt="Imagen 5">
+            <img src="https://i.pinimg.com/736x/30/5c/f6/305cf64abe1c54b88ddd56d1e30e853d.jpg" alt="Imagen 6">
+            <img src="https://i.pinimg.com/550x/b1/15/7e/b1157edc6dd855a4c2afb73bbcf57ba8.jpg" alt="Imagen 7">
+            <img src="https://i.pinimg.com/736x/30/5c/f6/305cf64abe1c54b88ddd56d1e30e853d.jpg" alt="Imagen 8">
+            <img src="https://blog.newoldman.com.br/wp-content/uploads/2022/08/Corte-Temple-Fade-with-Sponge-Twists-Masculino-1.jpg" alt="Imagen 9">
+            <img src="https://i.pinimg.com/736x/89/da/82/89da82362266c6cb78adb603d541dcff.jpg" alt="Imagen 10">
+            <img src="https://cortesdepelohombres.com/wp-content/uploads/2018/01/mohawk-con-desvanecimiento.jpg" alt="Imagen 11">
+            <img src="https://i.pinimg.com/736x/3e/90/df/3e90df775c849683afa009ff6eb41ee5.jpg" alt="Imagen 12">
+            <img src="https://i.pinimg.com/736x/36/f9/5a/36f95af94269ece8a22e658acef93509.jpg" alt="Imagen 13">
+            <img src="https://haircutday.com/b/wp-content/uploads/2024/01/HCD-BEAUTY16-300x300.png" alt="Imagen 14">
+            <img src="https://i.pinimg.com/736x/7b/38/73/7b3873bc7af73dd28416251f91b8b97e.jpg" alt="Imagen 15">
+            <img src="https://i.pinimg.com/736x/81/1b/7d/811b7d3110a917e0ab90fc8e43f5e4f3.jpg" alt="Imagen 16">
+            <img src="https://i.pinimg.com/originals/c2/87/fd/c287fd1e77f7da3778dca0f07e71cad1.jpg" alt="Imagen 17">
+            <img src="https://i.pinimg.com/originals/9c/64/9c/9c649c4e3bbcd1b29b46e81d8e51d3d2.jpg" alt="Imagen 18">
+            <img src="https://i.pinimg.com/236x/a7/cc/88/a7cc881035101e14e646b65477c73335.jpg" alt="Imagen 19">
+            <img src="https://peinados.es/wp-content/uploads/2018/06/cortes-de-pelo-hombre-navaja-rubio.png" alt="Imagen 20">
+            <img src="https://i.pinimg.com/236x/12/8d/fb/128dfbf34e500177c4099f96489d1af0.jpg" alt="Imagen 21">
+            <img src="https://static.wixstatic.com/media/4304a4_d7707815b8d940a0b237a7a0c488e563~mv2.webp/v1/fill/w_720,h_720,al_c,lg_1,q_85/4304a4_d7707815b8d940a0b237a7a0c488e563~mv2.webp" alt="Imagen 22">
+            <img src="https://i.pinimg.com/550x/3d/dd/4f/3ddd4f75cc72ad8c701823aec4b2685b.jpg" alt="Imagen 23">
+            <img src="https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2022/05/19/16529549296005.jpg" alt="Imagen 24">
+            <img src="https://content.clara.es/medio/2024/05/31/cortes-de-pelo-para-hombre-joven-low-fade_9a29981a_240531120929_800x996.webp" alt="Imagen 25">
+            <img src="https://i.pinimg.com/736x/86/86/94/868694bde8b2c4e817b447ae80550778.jpg" alt="Imagen 26">
+            <img src="https://phantom-expansion.unidadeditorial.es/daacd2339f467e89ff593a494e5bdb1c/crop/0x0/1298x1298/resize/828/f/jpg/assets/multimedia/imagenes/2022/05/19/16529495592569.jpg" alt="Imagen 27">
+            <img src="https://peluqueriayesteticajavea.com/public/images/Cortes-de-pelo-2014-para-hombres1.jpg" alt="Imagen 28">
+            <img src="https://www.fabricbarberia.com/wp-content/uploads/2019/01/Undercut-Faux-Hawk.jpg" alt="Imagen 29">
+            <img src="https://i.pinimg.com/736x/1c/9c/64/1c9c6442fd1034618af5786a9024973c.jpg" alt="Imagen 30">
+            <img src="https://i.ytimg.com/vi/e8_8o0tdwSA/maxresdefault.jpg" alt="Imagen 31">
+            <img src="https://i.pinimg.com/236x/23/c1/34/23c1343730d1cd624705461cece818ce.jpg" alt="Imagen 32">
+            <img src="https://i.pinimg.com/736x/e6/cb/36/e6cb363667a3c9982540f8191d1ab291.jpg" alt="Imagen 33">
+            <img src="https://i.pinimg.com/564x/73/65/91/7365916e344a953e8ae3d1c0c0f63adc.jpg" alt="Imagen 34">
+            <img src="https://i.pinimg.com/736x/92/31/91/923191fde896d8dec4185f8a300ca2c7.jpg" alt="Imagen 35">
+            <img src="https://i.pinimg.com/736x/9f/e4/36/9fe4361a28f7a46975260b474217b804.jpg" alt="Imagen 36">
+            <img src="https://i.ytimg.com/vi/yWi5mAZKWkM/hqdefault.jpg" alt="Imagen 37">
+            <img src="https://i.ytimg.com/vi/Cyb7UmTBO-k/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAbUSgTMWR7GTxOb6fHxcL12tzAuw" alt="Imagen 38">
+            <img src="https://i.pinimg.com/564x/f9/f9/52/f9f9520bd3b13eee437ec6619d9cc290.jpg" alt="Imagen 39">
+            <img src="https://img.freepik.com/vector-premium/vector-libre-cara-hombre-guapo-barba-logotipo-silueta-barberia_1188713-1951.jpg" alt="Imagen 40">
+        </div>
+
+        <!-- Flechas de navegación -->
+        <button class="arrow arrow-left" id="prev">&#9664;</button>
+        <button class="arrow arrow-right" id="next">&#9654;</button>
+    </div>
+
+    <!-- Botón de volver -->
+    <a href="index.html" class="button-back">Volver</a>
+
+    <div id="fullscreen" class="fullscreen" style="display: none;">
+        <img id="fullscreenImg" src="" alt="Imagen en pantalla completa">
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const fullscreen = document.getElementById('fullscreen');
+        const fullscreenImg = document.getElementById('fullscreenImg');
+        let index = 0;
+        const images = carousel.children;
+        const totalImages = images.length;
+        let autoSlide;
+
+        // Función para mostrar la siguiente imagen
+        function showNextImage() {
+            index = (index + 1) % totalImages;
+            updateCarousel();
+        }
+
+        // Función para mostrar la imagen anterior
+        function showPrevImage() {
+            index = (index - 1 + totalImages) % totalImages;
+            updateCarousel();
+        }
+
+        // Actualiza el carrusel según el índice actual
+        function updateCarousel() {
+            const offset = -index * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Función para iniciar el carrusel automático
+        function startAutoSlide() {
+            autoSlide = setInterval(showNextImage, 15000); // Cada 15 segundos
+        }
+
+        // Pausar el carrusel automático al interactuar con las flechas
+        function stopAutoSlide() {
+            clearInterval(autoSlide);
+        }
+
+        // Flechas de navegación
+        document.getElementById('next').addEventListener('click', () => {
+            stopAutoSlide();
+            showNextImage();
+            startAutoSlide();
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            stopAutoSlide();
+            showPrevImage();
+            startAutoSlide();
+        });
+
+        // Al hacer clic en una imagen, mostrarla en pantalla completa
+        Array.from(images).forEach(img => {
+            img.addEventListener('click', () => {
+                fullscreenImg.src = img.src; // Muestra la imagen seleccionada
+                fullscreen.style.display = 'flex'; // Muestra el contenedor en pantalla completa
+            });
+        });
+
+        // Al hacer clic en la imagen de pantalla completa, volver al modo normal
+        fullscreen.addEventListener('click', () => {
+            fullscreen.style.display = 'none'; // Ocultar el modo de pantalla completa
+        });
+
+        // Iniciar el carrusel automático al cargar la página
+        startAutoSlide();
+    </script>
+</body>
+</html>

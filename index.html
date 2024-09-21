@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbería</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .semirounded-box {
+            display: inline-block;
+            width: 150px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50px;
+            text-align: center;
+            margin: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            perspective: 1000px;
+        }
+        #cortes {
+            background-color: red;
+        }
+        #trayectoria {
+            background-color: white;
+            color: black;
+        }
+        #contacto {
+            background-color: blue;
+        }
+        .semirounded-box:hover {
+            transform: scale(1.1) rotateY(10deg);
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 30px auto;
+            transition: transform 0.3s ease;
+            perspective: 1000px;
+        }
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .circle:hover {
+            transform: scale(1.1) rotateX(10deg);
+        }
+
+        .button-location {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 30px;
+            background-color: green;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+            perspective: 1000px;
+        }
+        .button-location:hover {
+            transform: scale(1.1) rotateY(10deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="cortes" class="semirounded-box">
+            <a href="cortes.html" style="color: inherit; text-decoration: none;">Cortes</a>
+        </div>
+        <div id="trayectoria" class="semirounded-box">
+            <a href="trayectoria.html" style="color: inherit; text-decoration: none;">Trayectoria</a>
+        </div>
+        <div id="contacto" class="semirounded-box">
+            <a href="contacto.html" style="color: inherit; text-decoration: none;">Contacto</a>
+        </div>
+    </div>
+
+    <div class="circle">
+        <img src="https://www.shutterstock.com/image-vector/vintage-barbershop-logo-vector-template-260nw-2179024709.jpg" alt="Imagen de la barbería">
+    </div>
+
+    <a href="#" class="button-location" id="ubicacion">Ubicación</a>
+
+    <script>
+        document.getElementById('ubicacion').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    window.location.href = `https://www.google.com/maps?q=${lat},${lon}`;
+                });
+            } else {
+                alert('La geolocalización no está soportada por este navegador.');
+            }
+        });
+    </script>
+</body>
+</html>
